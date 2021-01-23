@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap');
 
+$main-todos-color: #5041b2;
 
 .todoList {
   margin: 15px auto;
@@ -13,7 +15,7 @@
   font-size: 20px;
   display: flex;
   border-radius: 5px;
-  border: 2px solid #5041b2;
+  border: 2px solid $main-todos-color;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
@@ -23,6 +25,9 @@
 .todoTitle {
   height: 100%;
   overflow: scroll;
+  p {
+    margin: 0.5em;
+  }
 }
 
 .todoPanel {
@@ -59,5 +64,37 @@
 
   &.uncompleted {
     @include todoAction(#751f1f)
+  }
+}
+
+.sortButtons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  button {
+    background-color: transparent;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid $main-todos-color;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    transition: all 0.5s ease;
+    &:hover {
+      background-color: $main-todos-color;
+      color: white;
+    }
+  }
+}
+
+
+.completedTodos {
+  margin-right: 40px;
+  text-align: center;
+  span {
+    font-family: 'Coda Caption', sans-serif;
   }
 }

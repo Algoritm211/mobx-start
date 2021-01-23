@@ -1,16 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
-import Counter from "./components/Counter/Counter";
 import TodoList from "./components/TodoList/TodoList";
 
 function App() {
   return (
     <div className="App">
-      <header className='header'>
+      <div className='appHeader'>
         <h1>
           Todo List MobX
         </h1>
-      </header>
+      </div>
       <section>
         <TodoList />
       </section>

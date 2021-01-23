@@ -2,16 +2,32 @@ import {makeAutoObservable} from "mobx";
 import {todoAPI} from "../api/todo-api";
 
 
+const sleep = (ms) => {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 class TodoStore {
   todos = []
+  loading = false
 
   constructor() {
     makeAutoObservable(this)
   }
 
-  async fetchTodos() {
-    const todos = await todoAPI.getTodos()
+  setTodos = (todos) => {
     this.todos = todos
+  }
+
+  setLoading(loading) {
+    this.loading = loading
+  }
+
+  async fetchTodos() {
+    this.setLoading(true)
+    const todos = await todoAPI.getTodos()
+    await sleep(1500)
+    this.setTodos(todos)
+    this.setLoading(false)
   }
 
   setCompleted(id) {
@@ -20,6 +36,10 @@ class TodoStore {
 
   removeTodo(id) {
     this.todos = this.todos.filter(todo => todo.id !== id)
+  }
+
+  get countCompletedTodos() {
+    return this.todos.filter(todo => todo.completed).length
   }
 
 }
